@@ -45,6 +45,14 @@ trigger.trigger = function(ev) {
 	});
 };
 
+trigger.triggerSync = function(ev) {
+	var args = arguments;
+	var evs = event[ev] || [];
+	evs.forEach(function(fn) {
+		fn.apply(null, slice.call(args, 1));
+	});
+};
+
 trigger.off = function(ev, func) {
 	if(!ev){
 		event = {};

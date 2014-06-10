@@ -113,6 +113,20 @@ describe('trigger', function() {
 		assert.equal(7300, v1);
 		assert.equal(18314, v2);
 	});
+
+	it("triggerSync", function() {
+		e.off();
+		v1 = v2 = 0;
+		e.on('test', t1);
+		e.triggerSync('test', 200, 100);
+		assert.equal(1334, v1);
+		assert.equal(0, v2);
+
+		e.on('test', t2);
+		e.triggerSync('test', 2000, 1000);
+		assert.equal(3568, v1);
+		assert.equal(5321, v2);
+	});
 });
 
 test.run();
