@@ -69,9 +69,12 @@ trigger.off = function(ev, func) {
 	off(ev, func);
 	function off(e, fn){
 		var evs = event[e] || [];
-		for(var i=0; i<evs.length; i++)
-			if(evs[i] === fn)
+		for(var i=0; i<evs.length; i++){
+			if(evs[i] === fn){
 				event[e] = arrayPop(evs, i);
+				break;
+			}
+		}
 	}
 };
 
