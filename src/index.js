@@ -1,7 +1,8 @@
 var trigger = {},
 	event = {},
 	pending = 0,
-	slice = Array.prototype.slice;
+	slice = Array.prototype.slice,
+	isObject = require("util").isObject;
 
 trigger.on = function(ev, func) {
 	if(isObject(ev))
@@ -84,10 +85,6 @@ trigger.fib = function() {
 
 function arrayPop(arr, i){
 	return slice.call(arr, 0, i).concat(slice.call(arr, i+1));
-}
-
-function isObject(arg) {
-	return typeof arg === 'object' && arg !== null;
 }
 
 module.exports = trigger;
