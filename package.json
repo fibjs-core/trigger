@@ -2,8 +2,10 @@
   "name": "trigger",
   "version": "0.0.1",
   "description": "event for fibjs",
-  "main": "src/index.js",
-  "scripts": {},
+  "main": "index.js",
+  "scripts": {
+    "test": "fibjs test/test.js"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/fibjs-core/trigger.git"
@@ -12,11 +14,11 @@
     "event",
     "fibjs"
   ],
-  "author": "Baoz Team",
-  "email": "info@baoz.cn",
+  "author": "ngot",
+  "email": "zhuanghengfei@gmail.com",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/fibjs-core/trigger/issues"
+    "url": "https://github.com/fibjs-modules/trigger/issues"
   },
-  "homepage": "https://github.com/fibjs-core/trigger"
+  "homepage": "https://github.com/fibjs-modules/trigger"
 }

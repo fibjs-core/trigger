@@ -1,11 +1,10 @@
-var test = require("test");
+const test = require("test");
+const coroutine = require('coroutine');
+const e = require("../");
+
 test.setup();
 
-var coroutine = require('coroutine');
-
-var e = require("../src/index.js");
-
-var v1, v2;
+let v1, v2;
 
 function t1(a1, a2) {
 	v1 = v1 + a1 - a2 + 1234;
@@ -16,15 +15,15 @@ function t2(a1, a2) {
 }
 
 function t3() {
-	coroutine.sleep(100);	
+	coroutine.sleep(100);
 }
 
 function t4() {
-	coroutine.sleep(100);	
+	coroutine.sleep(100);
 }
 
-describe('trigger', function() {
-	it("on", function() {
+describe('trigger', () => {
+	it("on", () => {
 		v1 = v2 = 0;
 		e.on('test', t1);
 		e.trigger('test', 200, 100);
@@ -41,7 +40,7 @@ describe('trigger', function() {
 		assert.equal(5321, v2);
 	});
 
-	it("fib", function() {
+	it("fib", () => {
 		e.on('fib', t3);
 		e.on('fib', t4);
 		e.trigger('fib');
@@ -49,7 +48,7 @@ describe('trigger', function() {
 		assert.equal(e.fib(), 2);
 	});
 
-	it("off", function() {
+	it("off", () => {
 		e.off('test', t1);
 		e.trigger('test', 20, 10);
 		coroutine.sleep(10);
@@ -57,7 +56,7 @@ describe('trigger', function() {
 		assert.equal(9652, v2);
 	});
 
-	it("once", function() {
+	it("once", () => {
 		e.once('test', t1);
 		e.trigger('test', 20, 10);
 		coroutine.sleep(10);
@@ -65,7 +64,7 @@ describe('trigger', function() {
 		assert.equal(13983, v2);
 	});
 
-	it("off all", function() {
+	it("off all", () => {
 		e.off('test', t2);
 		e.trigger('test', 20, 10);
 		coroutine.sleep(10);
@@ -73,7 +72,7 @@ describe('trigger', function() {
 		assert.equal(13983, v2);
 	});
 
-	it("on({...})", function() {
+	it("on({...})", () => {
 		e.on({
 			test: t1,
 			test1: t2
@@ -88,7 +87,7 @@ describe('trigger', function() {
 		assert.equal(18314, v2);
 	});
 
-	it("off({...})", function() {
+	it("off({...})", () => {
 		e.off({
 			test: t1,
 			test1: t2
@@ -100,7 +99,7 @@ describe('trigger', function() {
 		assert.equal(18314, v2);
 	});
 
-	it("overwrite", function() {
+	it("overwrite", () => {
 		e.on('test', t1);
 		e.once('test', t1);
 		e.trigger('test', 20, 10);
@@ -114,7 +113,7 @@ describe('trigger', function() {
 		assert.equal(18314, v2);
 	});
 
-	it("triggerSync", function() {
+	it("triggerSync", () => {
 		e.off();
 		v1 = v2 = 0;
 		e.on('test', t1);
@@ -129,4 +128,4 @@ describe('trigger', function() {
 	});
 });
 
-test.run();
+test.run(console.DEBUG);
