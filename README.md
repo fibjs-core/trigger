@@ -1,3 +1,9 @@
+# 已经不推荐使用，请使用 `EventEmit` 替代。
+
+```js
+const EventEmitter = require('events').EventEmitter;
+```
+
 #event for fibjs
 
 #### **事件触发对象，可用于建立观察者模式**
